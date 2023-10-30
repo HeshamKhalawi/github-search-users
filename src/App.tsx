@@ -2,18 +2,33 @@
 import Header from './components/header/Header'
 import SearchBar from './components/search-bar/SearchBar'
 import UserProfile from './components/user-profile/UserProfile'
-// import { ThemeProvider } from 'styled-components';
+import styled from 'styled-components'
+import { ThemeProvider } from 'styled-components';
+
+const Wrapper = styled.div`
+  background: #F6F8FF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`
+const WrapperBox = styled.div`
+  width: 730px;
+`
 
 
 
 function App() {
 
   return (
-    <div>
-      <Header/ >
-      <SearchBar/ >
-      <UserProfile/ >
-    </div>
+    <Wrapper>
+      <WrapperBox>
+        <Header/ >
+        <SearchBar/ >
+        <UserProfile/ >
+      </WrapperBox>
+    </Wrapper>
   );
 }
 

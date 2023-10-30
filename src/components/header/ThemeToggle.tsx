@@ -3,8 +3,23 @@ import DarkIcon from '../../icons/icon-moon.svg'
 // import LightIcon from '../../icons/icon-sun.svg'
 
 
-const Wrapper = styled.button`` 
-const ThemeText = styled.p``
+const Wrapper = styled.button`
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    height: 50px;
+    width: 78px;
+` 
+const ThemeText = styled.span`
+    font-family: ${props => props.theme.fonts.h1.family};
+    font-size: '13px';
+    font-weight: 700;
+    color: ${props => props.theme.colors.light.secondary};
+
+`
 
 function  ThemeToggle() {
 
