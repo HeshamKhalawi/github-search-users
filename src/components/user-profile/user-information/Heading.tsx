@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 
-const UserName = styled.h1`
+const UserName = styled.h1<{currentTheme: any}>`
     grid-area: name;
     margin: 0;
     font-family: ${props => props.theme.fonts.h1.family};
     font-size: ${props => props.theme.fonts.h1.size};
     font-weight: ${props => props.theme.fonts.h1.weight};
-    color: ${props => props.theme.colors.light.quaternary};
+    color: ${props => props.currentTheme === "light" ? props.theme.colors.light.quaternary : "#FFF"};
     @media(max-width: 375px){
         font-size: 16px 
     }   
@@ -27,10 +27,10 @@ const UserTag = styled.h3`
     }  
 ` 
 
-const DateJoined = styled.span`
+const DateJoined = styled.span<{currentTheme: any}>`
     grid-area: date;
     margin-top: 9px;
-    color: ${props => props.theme.colors.light.secondary};
+    color: ${props => props.currentTheme === "light" ? props.theme.colors.light.secondary : "#FFF"};
     font-family: ${props => props.theme.fonts.h1.family};
     font-size: 15px;
     font-weight: 400;
@@ -59,16 +59,16 @@ const UserDetails = styled.div`
 `
 
 
-function Heading() {
+function Heading({currentTheme}: any) {
 
     return(
         <UserDetails>
-            <UserName>The Octocat</UserName>
+            <UserName currentTheme={currentTheme}>The Octocat</UserName>
             <UserTag>@Octocat</UserTag>
-            <DateJoined>Joined 25 Jan 2011</DateJoined>
+            <DateJoined currentTheme={currentTheme}>Joined 25 Jan 2011</DateJoined>
         </UserDetails>
     ); 
 }      
 
-
+ 
 export default Heading;

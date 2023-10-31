@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import ThemeToggle from './ThemeToggle'
 
-const Logo = styled.h1`
+const Logo = styled.h1<{currentTheme: string}>`
     cursor: default;
     user-select: none;
     font-family: ${props => props.theme.fonts.h1.family};
     font-size: ${props => props.theme.fonts.h1.size};
     line-height: ${props => props.theme.fonts.h1.lineHeight};
-    color: #222731;
+    color: ${props => props.currentTheme === "light" ? "#222731" : "#FFFFFF"};
 `
 const Wrapper = styled.div`
     display: flex;
@@ -15,12 +15,11 @@ const Wrapper = styled.div`
     justify-content: space-between; 
 `
 
-function Header(){
-
+function Header({setCurrentTheme, currentTheme}: any){
     return(
         <Wrapper>
-            <Logo>devfinder</Logo>
-            <ThemeToggle/ >
+            <Logo currentTheme={currentTheme}>devfinder</Logo>
+            <ThemeToggle setCurrentTheme={setCurrentTheme} currentTheme={currentTheme} />
         </Wrapper>
         );
 }

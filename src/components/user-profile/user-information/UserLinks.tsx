@@ -1,8 +1,12 @@
 import styled from "styled-components";
-import LocationIcon from '../../../icons/icon-location.svg'
-import TwitterIcon from '../../../icons/icon-twitter.svg'
-import CompanyIcon from '../../../icons/icon-company.svg'
-import WebsiteIcon from '../../../icons/icon-website.svg'
+import LocationIconLight from '../../../icons/icon-location.svg'
+import TwitterIconLight from '../../../icons/icon-twitter.svg'
+import CompanyIconLight from '../../../icons/icon-company.svg'
+import WebsiteIconLight from '../../../icons/icon-website.svg'
+import LocationIconDark from '../../../icons/icon-location-dark.svg'
+import TwitterIconDark from '../../../icons/icon-twitter-dark.svg'
+import CompanyIconDark from '../../../icons/icon-company-dark.svg'
+import WebsiteIconDark from '../../../icons/icon-website-dark.svg'
 
 const Wrapper = styled.div`    
     grid-area: links;
@@ -20,35 +24,38 @@ const InformationWrapper = styled.div`
     gap: 19px;
     align-items: center;
 `
-const Span = styled.span`
-    color: ${props => props.theme.colors.light.tertiary};
+const Span = styled.span<{currentTheme: string}>`
     font-family: ${props => props.theme.fonts.body.family};
     font-size: ${props => props.theme.fonts.body.size};
     font-weight: ${props => props.theme.fonts.body.weight};
     line-height: ${props => props.theme.fonts.body.lineHeight};
+    color: ${props => props.currentTheme === "light" ? props.theme.colors.light.tertiary : "#FFFFFF"};
+    @media(max-width: 375px){
+        font-size: 13px;
+    };
 `
-const LocationStyle = styled(Span)`
+const LocationStyle = styled(Span)<{currentTheme: string}>`
     margin-left: 6px;
 `
 
-function UserLinks() {
+function UserLinks({currentTheme}: any) {
     return(
         <Wrapper>
             <InformationWrapper>
-                <img src={LocationIcon} alt="Location" height="20px" width="14px" />
-                <LocationStyle>San Francisco</LocationStyle>
+                <img src={currentTheme === "light" ? LocationIconLight : LocationIconDark} alt="Location" height="20px" width="14px" />
+                <LocationStyle currentTheme={currentTheme}>San Francisco</LocationStyle>
             </InformationWrapper>
             <InformationWrapper>
-                <img src={TwitterIcon} alt="Twitter" height="17px" width="20px"/>
-                <Span>twitter.com</Span>
+                <img src={currentTheme === "light" ? TwitterIconLight : TwitterIconDark} alt="Twitter" height="17px" width="20px"/>
+                <Span currentTheme={currentTheme}>twitter.com</Span>
             </InformationWrapper>
             <InformationWrapper>
-                <img src={WebsiteIcon} alt="Website" height="20px" width="20px"/>
-                <Span>https://github.blog</Span>
+                <img src={currentTheme === "light" ? WebsiteIconLight : WebsiteIconDark} alt="Website" height="20px" width="20px"/>
+                <Span currentTheme={currentTheme}>https://github.blog</Span>
             </InformationWrapper>
             <InformationWrapper>
-                <img src={CompanyIcon} alt="Company" height="20px" width="20px"/>
-                <Span>@github</Span>
+                <img src={currentTheme === "light" ? CompanyIconLight : CompanyIconDark} alt="Company" height="20px" width="20px"/>
+                <Span currentTheme={currentTheme}>@github</Span>
             </InformationWrapper>
         </Wrapper>
     );

@@ -33,13 +33,13 @@ const UserImage = styled.img`
     }
 `;
 
-const UserDescription = styled.p`
+const UserDescription = styled.p<{currentTheme: any}>`
     grid-area: description;
     margin: 20px 0 0 0;
-    color: ${props => props.theme.colors.light.tertiary};
+    color: ${props => props.currentTheme === "light" ? props.theme.colors.light.tertiary : "#FFF "};
     font-family: ${props => props.theme.fonts.body.family};
     font-size: ${props => props.theme.fonts.body.size};
-    font-weight: ${props => props.theme.fonts.body.weight};
+    font-weight: ${props => props.theme.fonts.body.weight}; 
     line-height: ${props => props.theme.fonts.body.lineHeight};
     @media(max-width: 768px){
         margin-top: 24px;
@@ -49,19 +49,19 @@ const UserDescription = styled.p`
     }
 `
 
-const StyledHeading = styled(Heading)`
+const StyledHeading = styled(Heading)<{currentTheme: any}>`
     grid-area: heading;
 `;
 
-const StyledUserStats = styled(UserStats)`
+const StyledUserStats = styled(UserStats)<{currentTheme: any}>`
     grid-area: stats;
 `;
 
-const StyledUserLinks = styled(UserLinks)`
+const StyledUserLinks = styled(UserLinks)<{currentTheme: any}>`
     grid-area: links;
 `;
 
-function UserInformation() {
+function UserInformation({currentTheme}: any) {
     return (
         <Wrapper>
             <UserImage 
@@ -69,10 +69,10 @@ function UserInformation() {
                 alt='user-profile'
                 >
             </UserImage>
-            <StyledHeading />
-            <UserDescription>This profile has no description dsa joijs adi asj diu ash diusa dhiuashd uiasdh</UserDescription>
-            <StyledUserStats />
-            <StyledUserLinks />
+            <StyledHeading currentTheme={currentTheme}/>
+            <UserDescription currentTheme={currentTheme}>This profile has no description dsa joijs adi asj diu ash diusa dhiuashd uiasdh</UserDescription>
+            <StyledUserStats currentTheme={currentTheme}/>
+            <StyledUserLinks currentTheme={currentTheme}/>
         </Wrapper>
     );
 }

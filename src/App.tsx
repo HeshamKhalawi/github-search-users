@@ -1,12 +1,11 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import Header from './components/header/Header'
 import SearchBar from './components/search-bar/SearchBar'
 import UserProfile from './components/user-profile/UserProfile'
 import styled from 'styled-components'
-import { ThemeProvider } from 'styled-components';
 
-const Wrapper = styled.div`
-  background: #F6F8FF;
+const Wrapper = styled.div<{currentTheme: string}>`
+  background: ${props => props.currentTheme === "light" ? props.theme.colors.light.quinary : props.theme.colors.dark.tertiary};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,16 +22,15 @@ const WrapperBox = styled.div`
   }
 `
 
-
-
 function App() {
-
+  const systemTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const [currentTheme, setCurrentTheme] = useState(systemTheme);
   return (
-    <Wrapper>
+    <Wrapper currentTheme={currentTheme}>
       <WrapperBox>
-        <Header/ >
-        <SearchBar/ >
-        <UserProfile/ >
+        <Header setCurrentTheme={setCurrentTheme} currentTheme={currentTheme} />
+        <SearchBar currentTheme={currentTheme} />
+        <UserProfile currentTheme={currentTheme} />
       </WrapperBox>
     </Wrapper>
   );

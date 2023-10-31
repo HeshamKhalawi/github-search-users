@@ -50,8 +50,8 @@ const theme = {
     dark: {
       primary: "#0079FF",
       secondary: "#FFFFFF",
-      tertiary: "#1F1D2F",
-      quaternary: "#1E2A47 ",
+      tertiary: "RGB(20, 29, 47)",
+      quaternary: "#1E2A47",
     },
   },
 };

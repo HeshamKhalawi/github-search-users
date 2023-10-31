@@ -2,13 +2,13 @@ import UserInformation from './user-information/UserInformation'
 import styled from 'styled-components';
  
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{currentTheme: string}>`
     disply: flex;
     padding: 48px;
     margin: 24px 0 0 0;
     border-radius: 15px;
-    background: #FEFEFE;
-    box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.20);
+    background: ${props => props.currentTheme === "light" ? "#FEFEFE" : props.theme.colors.dark.quaternary};
+    box-shadow: ${props => props.currentTheme === "light" ? "0px 16px 30px -10px rgba(70, 96, 187, 0.20)" : ""};
     @media(max-width: 768px){
         padding: 40px;
     }
@@ -17,10 +17,10 @@ const Wrapper = styled.div`
     }
 `
 
-function  UserProfile() {
+function  UserProfile({currentTheme}: any) {
     return(
-        <Wrapper>
-            <UserInformation/ >
+        <Wrapper currentTheme={currentTheme} >
+            <UserInformation currentTheme={currentTheme} />
         </Wrapper>
     );
 }
