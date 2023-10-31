@@ -18,10 +18,11 @@ const ThemeText = styled.span`
     font-size: '13px';
     font-weight: 700;
     color: ${props => props.theme.colors.light.secondary};
+    letter-spacing: 2.5px;
 
 `
 
-function  ThemeToggle() {
+function   ThemeToggle() {
 
     return(
         <Wrapper>

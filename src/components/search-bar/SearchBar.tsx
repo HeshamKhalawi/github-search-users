@@ -21,7 +21,13 @@ const Input = styled.input`
     border: none;
     border-radius: 15px;
     box-shadow: 0 4px 6px -1px rgb(70 96 187 / 0.1), 0 2px 4px -2px rgb(70 96 187 / 0.1);
-`
+    @media(max-width: 375px){
+        font-size: 13px;
+        padding: 0 0 0 51px; 
+        height: 60px;
+    }
+     
+    `
 const Wrapper = styled.div`
     position: relative;
     display: flex;
@@ -33,6 +39,9 @@ const Icon = styled.img`
     left: 32px;
     height: 24px;
     width: 25px;
+    @media(max-width: 375px){
+        left: 16px;
+    }
 `
 
 function SearchBar() {
@@ -44,8 +53,7 @@ function SearchBar() {
                 alt="search-icon"
             >
             </Icon>
-
-            <Input type="text" placeholder="Search GitHub username..."/>
+            <Input type="text" placeholder="Search GitHub User..."/>
             <SearchButton/ >
         </Wrapper>
     );

@@ -5,18 +5,20 @@ import CompanyIcon from '../../../icons/icon-company.svg'
 import WebsiteIcon from '../../../icons/icon-website.svg'
 
 const Wrapper = styled.div`    
+    grid-area: links;
     margin: 37px 0 0 0;
     display: grid;
     grid-template-columns: auto auto;
     gap: 19px;
+    @media(max-width: 375px){
+        display: flex;
+        flex-direction: column;
+    }
 `
 const InformationWrapper = styled.div`
     display: flex;
     gap: 19px;
     align-items: center;
-`
-const Img = styled.img`
-
 `
 const Span = styled.span`
     color: ${props => props.theme.colors.light.tertiary};
@@ -25,25 +27,27 @@ const Span = styled.span`
     font-weight: ${props => props.theme.fonts.body.weight};
     line-height: ${props => props.theme.fonts.body.lineHeight};
 `
+const LocationStyle = styled(Span)`
+    margin-left: 6px;
+`
 
 function UserLinks() {
-
     return(
         <Wrapper>
             <InformationWrapper>
-                <Img src={LocationIcon} alt="Location" height="20px" width="14px"></Img>
-                <Span>San Francisco</Span>
+                <img src={LocationIcon} alt="Location" height="20px" width="14px" />
+                <LocationStyle>San Francisco</LocationStyle>
             </InformationWrapper>
             <InformationWrapper>
-                <Img src={TwitterIcon} alt="Twitter" height="17px" width="20px"></Img>
+                <img src={TwitterIcon} alt="Twitter" height="17px" width="20px"/>
                 <Span>twitter.com</Span>
             </InformationWrapper>
             <InformationWrapper>
-                <Img src={WebsiteIcon} alt="Website" height="20px" width="20px"></Img>
+                <img src={WebsiteIcon} alt="Website" height="20px" width="20px"/>
                 <Span>https://github.blog</Span>
             </InformationWrapper>
             <InformationWrapper>
-                <Img src={CompanyIcon} alt="Company" height="20px" width="20px"></Img>
+                <img src={CompanyIcon} alt="Company" height="20px" width="20px"/>
                 <Span>@github</Span>
             </InformationWrapper>
         </Wrapper>

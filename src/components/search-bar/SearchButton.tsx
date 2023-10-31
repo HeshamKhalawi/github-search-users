@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
+    &:hover{
+        background: #60ABFF; 
+    }
     position: absolute;
     right: 0;
     margin: 0 10px 0 0;
@@ -14,6 +17,11 @@ const Button = styled.button`
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    @media(max-width: 375px){
+        height: 46px;
+        width: 84px;
+        font-size: 14px;
+    }
 
 `
 

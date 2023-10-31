@@ -1,12 +1,23 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+    grid-area: stats;
     display: flex;
-    padding: 0 0 0 32px;
-    margin: 32px 0 0 0;
+    margin-top: 32px;
+    padding: 15px 0 0 32px;
+    height: 70px;
     background: ${props => props.theme.colors.light.quinary};
     border-radius: 10px;
     gap: 99px;
+    @media(max-width: 768px){
+        margin-top: 23px;
+    }
+    @media(max-width: 375px){
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        gap: 33px;
+    }
 `
 const Headers = styled.h4`
     margin: 0;
@@ -15,6 +26,9 @@ const Headers = styled.h4`
     font-weight: ${props => props.theme.fonts.h4.weight};
     line-height: ${props => props.theme.fonts.h4.lineHeight};
     color: ${props => props.theme.colors.light.tertiary};
+    @media(max-width: 375px){
+        font-size: 11px;
+    }
 `
 const HeadersValue = styled.h2`
     margin: 0;
@@ -23,10 +37,17 @@ const HeadersValue = styled.h2`
     font-weight: ${props => props.theme.fonts.h2.weight};
     line-height: ${props => props.theme.fonts.h2.lineHeight};
     color: ${props => props.theme.colors.light.quaternary};
+    @media(max-width: 375px){
+        font-size: 16px;
+    }
 `
 const HeaderWrapper = styled.h4`
     display: flex;
     flex-direction: column;
+    margin: 0;
+    @media(max-width: 375px){
+        align-items: center;
+    }
 `
 
 function UserStats() {

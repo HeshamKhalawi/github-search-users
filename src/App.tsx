@@ -15,6 +15,12 @@ const Wrapper = styled.div`
 `
 const WrapperBox = styled.div`
   width: 730px;
+  @media (max-width: 768px) {
+    width: 573px;
+  }
+  @media (max-width: 375px) {
+    width: 327px;
+  }
 `
 
 

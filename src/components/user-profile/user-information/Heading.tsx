@@ -1,66 +1,73 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
 
-`
 const UserName = styled.h1`
+    grid-area: name;
     margin: 0;
     font-family: ${props => props.theme.fonts.h1.family};
     font-size: ${props => props.theme.fonts.h1.size};
     font-weight: ${props => props.theme.fonts.h1.weight};
-    line-height: ${props => props.theme.fonts.h1.lineHeight};
     color: ${props => props.theme.colors.light.quaternary};
-
-
-    
+    @media(max-width: 375px){
+        font-size: 16px 
+    }   
 `
 const UserTag = styled.h3`
+    grid-area: tag;
     margin: 2px 0 0 0;
     color: ${props => props.theme.colors.light.primary};
     font-family: ${props => props.theme.fonts.h3.family};
     font-size: ${props => props.theme.fonts.h3.size};
     font-weight: ${props => props.theme.fonts.h3.weight};
-    line-height: ${props => props.theme.fonts.h3.lineHeight};
+    @media(max-width: 375px){
+        font-size: 13px 
+    }
+    @media(max-width: 375px){
+        margin: 0;
+    }  
 ` 
-const UserDescription = styled.p`
-    margin: 20px 0 0 0;
-    color: ${props => props.theme.colors.light.tertiary};
-    font-family: ${props => props.theme.fonts.body.family};
-    font-size: ${props => props.theme.fonts.body.size};
-    font-weight: ${props => props.theme.fonts.body.weight};
-    line-height: ${props => props.theme.fonts.body.lineHeight};
-`
+
 const DateJoined = styled.span`
-    margin-top: 4px;
+    grid-area: date;
+    margin-top: 9px;
     color: ${props => props.theme.colors.light.secondary};
     font-family: ${props => props.theme.fonts.h1.family};
     font-size: 15px;
     font-weight: 400;
+    justify-self: end;
+    @media(max-width: 768px){
+        margin-top: 5px;
+        font-size: 13px; 
+    }
+    @media(max-width: 375px){
+        margin-top: 6px;
+    }
 `
 const UserDetails = styled.div`
-    
-`
-const NameDateHolder = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
+    grid-area: heading;
+    display: grid;
+    grid-template-areas: 'name date'
+                         'tag .';
+    @media(max-width: 768px){
+        display: flex;
+        flex-direction: column;
+        margin: 12px 0 0 41px;
+    }
+    @media(max-width: 375px){
+        margin: 0 0 0 19.5px;
+    }
 `
 
 
 function Heading() {
 
     return(
-        <Wrapper>
-            <UserDetails>
-                <NameDateHolder>
-                    <UserName>The Octocat</UserName>
-                    <DateJoined>Joined 25 Jan 2011</DateJoined>
-                </NameDateHolder>
-                <UserTag>@Octocat</UserTag>
-            </UserDetails>
-            <UserDescription>This profile has no description</UserDescription>
-        </Wrapper>
-    );
+        <UserDetails>
+            <UserName>The Octocat</UserName>
+            <UserTag>@Octocat</UserTag>
+            <DateJoined>Joined 25 Jan 2011</DateJoined>
+        </UserDetails>
+    ); 
 }      
 
 

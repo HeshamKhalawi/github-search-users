@@ -9,10 +9,15 @@ const Wrapper = styled.div`
     border-radius: 15px;
     background: #FEFEFE;
     box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.20);
+    @media(max-width: 768px){
+        padding: 40px;
+    }
+    @media(max-width: 375px){
+        padding: 32px 24px 48px 24px;
+    }
 `
 
-function UserProfile() {
-
+function  UserProfile() {
     return(
         <Wrapper>
             <UserInformation/ >
