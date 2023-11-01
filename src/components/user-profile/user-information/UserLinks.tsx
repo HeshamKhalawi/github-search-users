@@ -65,7 +65,7 @@ function UserLinks({currentTheme, searchResult}: UserLinksProps) {
         <Wrapper>
             <InformationWrapper>
                 <Icon src={currentTheme === "light" ? LocationIconLight : LocationIconDark} alt="Location" height="20px" width="14px" isAvailable={!!searchResult?.location} />
-                <LocationStyle currentTheme={currentTheme} isAvailable={!!searchResult?.blog}>{searchResult?.location || "Not Available"}</LocationStyle>
+                <LocationStyle currentTheme={currentTheme} isAvailable={!!searchResult?.location}>{searchResult?.location || "Not Available"}</LocationStyle>
             </InformationWrapper>
             <InformationWrapper>
                 <Icon src={currentTheme === "light" ? TwitterIconLight : TwitterIconDark} alt="Twitter" height="17px" width="20px" isAvailable={!!searchResult?.twitter_username}/>
