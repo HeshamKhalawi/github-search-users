@@ -3,6 +3,12 @@ import Heading from "./Heading";
 import UserLinks from "./UserLinks";
 import UserStats from "./UserStats";
 import Bitmap from '../../../icons/Bitmap.jpg'
+import {User} from '../../../App';
+
+interface UserInformationProps{
+    currentTheme: string,
+    searchResult: User | null,
+}
 
 const Wrapper = styled.div`
     display: grid;
@@ -49,30 +55,30 @@ const UserDescription = styled.p<{currentTheme: any}>`
     }
 `
 
-const StyledHeading = styled(Heading)<{currentTheme: any}>`
+const StyledHeading = styled(Heading)<{currentTheme: string}>`
     grid-area: heading;
 `;
 
-const StyledUserStats = styled(UserStats)<{currentTheme: any}>`
+const StyledUserStats = styled(UserStats)<{currentTheme: string}>`
     grid-area: stats;
 `;
 
-const StyledUserLinks = styled(UserLinks)<{currentTheme: any}>`
+const StyledUserLinks = styled(UserLinks)<{currentTheme: string}>`
     grid-area: links;
 `;
 
-function UserInformation({currentTheme}: any) {
+function UserInformation({currentTheme, searchResult}: UserInformationProps) {
     return (
         <Wrapper>
             <UserImage 
-                src={Bitmap}
+                src={searchResult?.avatar_url}
                 alt='user-profile'
                 >
             </UserImage>
-            <StyledHeading currentTheme={currentTheme}/>
-            <UserDescription currentTheme={currentTheme}>This profile has no description dsa joijs adi asj diu ash diusa dhiuashd uiasdh</UserDescription>
-            <StyledUserStats currentTheme={currentTheme}/>
-            <StyledUserLinks currentTheme={currentTheme}/>
+            <StyledHeading currentTheme={currentTheme} searchResult={searchResult}/>
+            <UserDescription currentTheme={currentTheme}>{searchResult?.bio}</UserDescription>
+            <StyledUserStats currentTheme={currentTheme} searchResult={searchResult}/>
+            <StyledUserLinks currentTheme={currentTheme} searchResult={searchResult}/>
         </Wrapper>
     );
 }

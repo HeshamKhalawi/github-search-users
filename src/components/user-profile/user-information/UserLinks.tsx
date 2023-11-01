@@ -7,6 +7,12 @@ import LocationIconDark from '../../../icons/icon-location-dark.svg'
 import TwitterIconDark from '../../../icons/icon-twitter-dark.svg'
 import CompanyIconDark from '../../../icons/icon-company-dark.svg'
 import WebsiteIconDark from '../../../icons/icon-website-dark.svg'
+import {User} from '../../../App';
+
+interface UserLinksProps{
+    currentTheme: string,
+    searchResult: User | null,
+}
 
 const Wrapper = styled.div`    
     grid-area: links;
@@ -24,7 +30,7 @@ const InformationWrapper = styled.div`
     gap: 19px;
     align-items: center;
 `
-const Span = styled.span<{currentTheme: string}>`
+const Span = styled.span<{currentTheme: string, isAvailable: boolean}>`
     font-family: ${props => props.theme.fonts.body.family};
     font-size: ${props => props.theme.fonts.body.size};
     font-weight: ${props => props.theme.fonts.body.weight};
@@ -33,29 +39,45 @@ const Span = styled.span<{currentTheme: string}>`
     @media(max-width: 375px){
         font-size: 13px;
     };
+    opacity: ${props => props.isAvailable ? 1 : 0.5};
+`
+const Icon = styled.img<{isAvailable: boolean}>`
+    opacity: ${props => props.isAvailable ? 1 : 0.5};
 `
 const LocationStyle = styled(Span)<{currentTheme: string}>`
     margin-left: 6px;
 `
+const Anchor = styled(Span).attrs({as : 'a'})<{currentTheme: string, isAvailable: boolean}>`
+    &:hover{
+        text-decoration: ${props => props.isAvailable ? 'underline' : 'none'};
+    }
+    display: inline;
+    text-decoration: none;   
+    
+`
 
-function UserLinks({currentTheme}: any) {
+function UserLinks({currentTheme, searchResult}: UserLinksProps) {
+    const twitterAttributes = searchResult?.twitter_username ? { href: `https://twitter.com/${searchResult.twitter_username}` }: {};
+    const blogAttributes = searchResult?.blog ? { href: `${searchResult?.blog}` }: {};
+    const companyAttributes = searchResult?.company ? { href: `https://github.com/${searchResult?.company.slice(1)}` }: {};
+
     return(
         <Wrapper>
             <InformationWrapper>
-                <img src={currentTheme === "light" ? LocationIconLight : LocationIconDark} alt="Location" height="20px" width="14px" />
-                <LocationStyle currentTheme={currentTheme}>San Francisco</LocationStyle>
+                <Icon src={currentTheme === "light" ? LocationIconLight : LocationIconDark} alt="Location" height="20px" width="14px" isAvailable={!!searchResult?.location} />
+                <LocationStyle currentTheme={currentTheme} isAvailable={!!searchResult?.blog}>{searchResult?.location || "Not Available"}</LocationStyle>
             </InformationWrapper>
             <InformationWrapper>
-                <img src={currentTheme === "light" ? TwitterIconLight : TwitterIconDark} alt="Twitter" height="17px" width="20px"/>
-                <Span currentTheme={currentTheme}>twitter.com</Span>
+                <Icon src={currentTheme === "light" ? TwitterIconLight : TwitterIconDark} alt="Twitter" height="17px" width="20px" isAvailable={!!searchResult?.twitter_username}/>
+                <Anchor {...twitterAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.twitter_username}>{searchResult?.twitter_username !== null || "Not Available"}</Anchor>
             </InformationWrapper>
             <InformationWrapper>
-                <img src={currentTheme === "light" ? WebsiteIconLight : WebsiteIconDark} alt="Website" height="20px" width="20px"/>
-                <Span currentTheme={currentTheme}>https://github.blog</Span>
+                <Icon src={currentTheme === "light" ? WebsiteIconLight : WebsiteIconDark} alt="Website" height="20px" width="20px" isAvailable={!!searchResult?.blog}/>
+                <Anchor {...blogAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.blog}>{searchResult?.blog || "Not Available"}</Anchor>
             </InformationWrapper>
             <InformationWrapper>
-                <img src={currentTheme === "light" ? CompanyIconLight : CompanyIconDark} alt="Company" height="20px" width="20px"/>
-                <Span currentTheme={currentTheme}>@github</Span>
+                <Icon src={currentTheme === "light" ? CompanyIconLight : CompanyIconDark} alt="Company" height="20px" width="20px" isAvailable={!!searchResult?.company}/>
+                <Anchor {...companyAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.company}>{searchResult?.company || "Not Available"}</Anchor>
             </InformationWrapper>
         </Wrapper>
     );

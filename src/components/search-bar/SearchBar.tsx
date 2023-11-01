@@ -1,6 +1,14 @@
 import SearchButton from "./SearchButton";
-import SearchIcon from '../../icons/icon-search.svg'
+import SearchIcon from '../../icons/icon-search.svg';
+import {User} from '../../App';
 import styled from 'styled-components';
+import { useState } from "react";
+
+interface SearchBarProps{
+    currentTheme: string,
+    setSearchResult: React.Dispatch<React.SetStateAction<User | null>>,
+    searchResult: User | null,
+}
 
 const Input = styled.input<{currentTheme: string}>`
     &::placeholder{
@@ -45,9 +53,20 @@ const Icon = styled.img`
         left: 16px;
     }
 `
+const Error = styled.span`
+    position: absolute;
+    right: 140px;
+    color: red;
+    font-family: ${props => props.theme.fonts.h4.family};
+    color: #F74646;
+    font-size: 15px;
+    font-weight: 700;
 
-function SearchBar({currentTheme}: any) {
+`
 
+function SearchBar({currentTheme, setSearchResult, searchResult}: SearchBarProps) {
+    const [input, setInput] = useState("");
+    const [isInvalid, setIsInvalid] = useState(false);
     return(
         <Wrapper>
             <Icon 
@@ -55,8 +74,9 @@ function SearchBar({currentTheme}: any) {
                 alt="search-icon"
             >
             </Icon>
-            <Input currentTheme={currentTheme} type="text" placeholder="Search GitHub User..."/>
-            <SearchButton/ >
+            <Input onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setInput(event.target.value)}} currentTheme={currentTheme} type="text" placeholder="Search GitHub User..."/>
+            {isInvalid && <Error>No Result</Error>}
+            <SearchButton setSearchResult={setSearchResult} searchResult={searchResult} input={input} setIsInvalid={setIsInvalid}/>
         </Wrapper>
     );
 }

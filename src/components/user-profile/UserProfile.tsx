@@ -1,6 +1,12 @@
 import UserInformation from './user-information/UserInformation'
 import styled from 'styled-components';
- 
+import {User} from '../../App';
+
+interface UserProfileProps{
+    currentTheme: string,
+    searchResult: User | null,
+}
+
 
 const Wrapper = styled.div<{currentTheme: string}>`
     disply: flex;
@@ -17,10 +23,10 @@ const Wrapper = styled.div<{currentTheme: string}>`
     }
 `
 
-function  UserProfile({currentTheme}: any) {
+function UserProfile({currentTheme, searchResult}: UserProfileProps) {
     return(
         <Wrapper currentTheme={currentTheme} >
-            <UserInformation currentTheme={currentTheme} />
+            <UserInformation currentTheme={currentTheme} searchResult={searchResult}/>
         </Wrapper>
     );
 }

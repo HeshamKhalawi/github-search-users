@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import {User} from '../../../App';
+
+interface UserStatsProps{
+    currentTheme: string,
+    searchResult: User | null,
+}
 
 const Wrapper = styled.div<{currentTheme: string}>`
     grid-area: stats;
@@ -50,21 +56,21 @@ const HeaderWrapper = styled.div`
     }
 `
 
-function UserStats({currentTheme}: any) {
+function UserStats({currentTheme, searchResult}: UserStatsProps) {
 
     return(
         <Wrapper currentTheme={currentTheme}>
             <HeaderWrapper>
                 <Headers currentTheme={currentTheme}>Repos</Headers> 
-                <HeadersValue currentTheme={currentTheme}>8</HeadersValue>
+                <HeadersValue currentTheme={currentTheme}>{searchResult?.public_repos}</HeadersValue>
             </HeaderWrapper>
             <HeaderWrapper>
                 <Headers currentTheme={currentTheme}>Followers</Headers> 
-                <HeadersValue currentTheme={currentTheme}>2943</HeadersValue>
+                <HeadersValue currentTheme={currentTheme}>{searchResult?.followers}</HeadersValue>
             </HeaderWrapper>
             <HeaderWrapper>
                 <Headers currentTheme={currentTheme}>Following</Headers> 
-                <HeadersValue currentTheme={currentTheme}>29</HeadersValue>
+                <HeadersValue currentTheme={currentTheme}>{searchResult?.following}</HeadersValue>
             </HeaderWrapper>
         </Wrapper>
     );

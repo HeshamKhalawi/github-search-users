@@ -1,5 +1,11 @@
 import styled from "styled-components";
+import { format, parseISO } from 'date-fns';
+import {User} from '../../../App';
 
+interface HeadingProps{
+    currentTheme: string,
+    searchResult: User | null,
+}
 
 const UserName = styled.h1<{currentTheme: any}>`
     grid-area: name;
@@ -59,13 +65,16 @@ const UserDetails = styled.div`
 `
 
 
-function Heading({currentTheme}: any) {
-
+function Heading({currentTheme, searchResult}: HeadingProps) {
+    function formatDate(input: any){
+        const date = parseISO(input);
+        return format(date, 'dd MMM yyyy');
+    }
     return(
         <UserDetails>
-            <UserName currentTheme={currentTheme}>The Octocat</UserName>
-            <UserTag>@Octocat</UserTag>
-            <DateJoined currentTheme={currentTheme}>Joined 25 Jan 2011</DateJoined>
+            <UserName currentTheme={currentTheme}>{searchResult?.name !== null ? searchResult?.name : searchResult?.login}</UserName>
+            <UserTag>@{searchResult?.login}</UserTag>
+            <DateJoined currentTheme={currentTheme}>{searchResult?.created_at ? formatDate(searchResult.created_at) : 'Not Available'}</DateJoined>
         </UserDetails>
     ); 
 }      

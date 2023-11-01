@@ -1,4 +1,13 @@
 import styled from 'styled-components';
+import {User} from '../../App';
+import axios from 'axios';
+
+interface SearchButtonProps{
+    setSearchResult: React.Dispatch<React.SetStateAction<User | null>>,
+    searchResult: User | null,
+    input: string,
+    setIsInvalid: React.Dispatch<React.SetStateAction<boolean>>,
+}
 
 const Button = styled.button`
     &:hover{
@@ -25,10 +34,37 @@ const Button = styled.button`
 
 `
 
-function SearchButton() {
-
+function SearchButton({setSearchResult, searchResult, input, setIsInvalid}: SearchButtonProps) {
+    const handleSubmit = async () => {
+        if(input !== ""){
+            try{
+                const response = await axios.get(`https://api.github.com/users/${input}`);
+                if(response.status === 200){
+                    setIsInvalid(false);
+                    const RD = response.data;
+                    setSearchResult({
+                        login: RD.login,
+                        avatar_url: RD.avatar_url,
+                        name: RD.name,
+                        company: RD.company,
+                        blog: RD.blog,
+                        location: RD.location,
+                        bio: RD.bio,
+                        twitter_username: RD.twitter_username,
+                        public_repos: RD.public_repos,
+                        followers: RD.followers,
+                        following: RD.following,
+                        created_at: RD.created_at,
+                    });
+                }
+            }catch(error){
+                console.error("error: " + error);
+                setIsInvalid(true);
+            }
+        }
+    }
     return(
-        <Button>
+        <Button onClick={handleSubmit}>
             Search
         </Button>
     );

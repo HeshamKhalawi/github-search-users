@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import DarkIcon from '../../icons/icon-moon.svg'
 import LightIcon from '../../icons/icon-sun.svg'
 
+interface ThemeToggleProps{
+    setCurrentTheme: React.Dispatch<React.SetStateAction<string>>,
+    currentTheme: string
+}
 
 const Wrapper = styled.button`
     background: none;
@@ -21,7 +25,7 @@ const ThemeText = styled.span<{currentTheme: string}>`
 
 `
 
-function ThemeToggle({setCurrentTheme, currentTheme}: any) {
+function ThemeToggle({setCurrentTheme, currentTheme}: ThemeToggleProps) {
 
     return(
         <Wrapper onClick={() => setCurrentTheme(currentTheme === "light" ? "dark" : "light")}>
