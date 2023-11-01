@@ -10,11 +10,12 @@ You should be able to:
 - Have the correct color scheme chosen based on your computer preferences.
 
 ### Screenshot
+![Screenshot 2023-11-01 at 16-55-23 Github User Search](https://github.com/HeshamKhalawi/github-search-users/assets/89632348/86b2b90f-eb2b-4de3-ba91-9e979a338aa8)
 
-![Screenshot 2023-11-01 at 16-55-23 Github User Search](https://github.com/HeshamKhalawi/github-search-users/assets/89632348/0636aa5f-45a3-4f52-b527-7664a5f331e9)
 
 ### Links
 - Live Site URL: https://github-user-search-545812fcbf62.herokuapp.com/
+
 
 ### Built with
 
