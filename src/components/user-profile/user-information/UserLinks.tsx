@@ -65,19 +65,19 @@ function UserLinks({currentTheme, searchResult}: UserLinksProps) {
         <Wrapper>
             <InformationWrapper>
                 <Icon src={currentTheme === "light" ? LocationIconLight : LocationIconDark} alt="Location" height="20px" width="14px" isAvailable={!!searchResult?.location} />
-                <LocationStyle currentTheme={currentTheme} isAvailable={!!searchResult?.location}>{searchResult?.location || "Not Available"}</LocationStyle>
+                <LocationStyle currentTheme={currentTheme} isAvailable={!!searchResult?.location}>{(searchResult?.location ? (searchResult.location.length > 20 ? searchResult.location.substring(0, 20) + "..." : searchResult.location) : "Not Available")}</LocationStyle>
             </InformationWrapper>
             <InformationWrapper>
                 <Icon src={currentTheme === "light" ? TwitterIconLight : TwitterIconDark} alt="Twitter" height="17px" width="20px" isAvailable={!!searchResult?.twitter_username}/>
-                <Anchor {...twitterAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.twitter_username}>{searchResult?.twitter_username !== null || "Not Available"}</Anchor>
+                <Anchor {...twitterAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.twitter_username}>{(searchResult?.twitter_username ? (searchResult.twitter_username.length > 20 ? searchResult.twitter_username.substring(0, 20) + "..." : searchResult.twitter_username) : "Not Available")}</Anchor>
             </InformationWrapper>
             <InformationWrapper>
                 <Icon src={currentTheme === "light" ? WebsiteIconLight : WebsiteIconDark} alt="Website" height="20px" width="20px" isAvailable={!!searchResult?.blog}/>
-                <Anchor {...blogAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.blog}>{searchResult?.blog || "Not Available"}</Anchor>
+                <Anchor {...blogAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.blog}>{(searchResult?.blog ? (searchResult.blog.length > 20 ? searchResult.blog.substring(0, 20) + "..." : searchResult.blog) : "Not Available")}</Anchor>
             </InformationWrapper>
             <InformationWrapper>
                 <Icon src={currentTheme === "light" ? CompanyIconLight : CompanyIconDark} alt="Company" height="20px" width="20px" isAvailable={!!searchResult?.company}/>
-                <Anchor {...companyAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.company}>{searchResult?.company || "Not Available"}</Anchor>
+                <Anchor {...companyAttributes} currentTheme={currentTheme} isAvailable={!!searchResult?.company}>{(searchResult?.company ? (searchResult.company.length > 20 ? searchResult.company.substring(0, 20) + "..." : searchResult.company) : "Not Available")}</Anchor>
             </InformationWrapper>
         </Wrapper>
     );
